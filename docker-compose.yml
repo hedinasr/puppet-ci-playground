@@ -51,4 +51,4 @@ services:
     - gitlab
     volumes:
     - ./data/gitlab-runner:/etc/gitlab-runner
-    - /var/run/docker.sock:/var/run/docker.sock	
+    - /var/run/docker.sock:/var/run/docker.sock
