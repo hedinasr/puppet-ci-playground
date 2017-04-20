@@ -1,14 +1,13 @@
-version: '2'
+version: '3'
 
 services:
   puppet:
     build: .
     container_name: puppet
-    hostname: puppet
     ports:
       - 8140
     volumes:
-      - ./code:/etc/puppetlabs/code/
+    #  - ./code:/etc/puppetlabs/code/:ro
       - ./puppet/ssl:/etc/puppetlabs/puppet/ssl/
       - ./puppet/serverdata:/opt/puppetlabs/server/data/puppetserver/
       - ./r10k:/etc/puppetlabs/r10k/
@@ -33,7 +32,6 @@ services:
 
   gitlab:
     restart: always
-    hostname: gitlab
     image: sameersbn/gitlab:9.0.5
     depends_on:
     - redis
