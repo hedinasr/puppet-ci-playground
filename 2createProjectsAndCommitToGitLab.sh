@@ -35,6 +35,7 @@ createProjectAndCommitToGitLab(){
 	echo "--- Committing..."
 	local currentPath=`pwd`;
 	cd $targetPath
+	git checkout -b production
 	git add .
 	git commit -a -m "inital commit"
 	git push -u origin production
