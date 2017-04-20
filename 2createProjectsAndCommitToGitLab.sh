@@ -5,10 +5,10 @@
 echo "precondition: create project 'hello-world-app' in gitlab"
 echo "The default user is 'root' and the pw is shown above"
 
-TARGETFOLDER=~/puppet
+TARGETFOLDER=~/Devel
 GITLAB_USER=root
 GITLAB_PW=12345678
-GITLAB_ADDR=gitlab
+GITLAB_ADDR=10.0.69.3:10080
 
 git config --global user.name "Administrator"
 git config --global user.email "admin@example.com"
