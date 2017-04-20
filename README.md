@@ -6,3 +6,8 @@
 - r10k
 
 # How to
+Create a repo named =puppet= and files in =code= to it
+
+# Todo
+
+Use Swarm
