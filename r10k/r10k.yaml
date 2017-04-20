@@ -6,5 +6,5 @@
   # This will clone the git repository and instantiate an environment per
   # branch in /etc/puppetlabs/code/environments
   :my-org:
-    remote: 'git@gitlab:/puppet
+    remote: 'git@gitlab:/puppet'
     basedir: '/etc/puppetlabs/code/environments'
