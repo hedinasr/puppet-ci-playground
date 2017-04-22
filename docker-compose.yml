@@ -2,7 +2,9 @@ version: '3'
 
 services:
   puppet:
-    build: Dockerfile.puppet
+    build:
+      context: .
+      dockerfile: Dockerfile.puppet
     restart: always
     container_name: puppet
     ports:
@@ -12,9 +14,9 @@ services:
       - ./puppet/ssl:/etc/puppetlabs/puppet/ssl/
       - ./puppet/serverdata:/opt/puppetlabs/server/data/puppetserver/
       - ./r10k:/etc/puppetlabs/r10k/
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
 
   redis:
     restart: always
@@ -23,8 +25,8 @@ services:
     - --loglevel warning
     volumes:
     - /srv/docker/gitlab/redis:/var/lib/redis:Z
-    environment:
-    - "constraint:node==node-2"
+#    environment:
+#    - "constraint:node==docker-node2"
 
   postgresql:
     restart: always
@@ -36,7 +38,7 @@ services:
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
     - DB_EXTENSION=pg_trgm
-    - "constraint:node==node-2"
+#    - "constraint:node==docker-node2"
 
   gitlab:
     restart: always
@@ -49,8 +51,8 @@ services:
     - "10022:22"
     volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data:Z
-    environment:
-    - "constraint:node==node-2"
+    #environment:
+    #- "constraint:node==docker-node2"
     env_file:
     - gitlab.env
 
@@ -62,5 +64,5 @@ services:
     volumes:
     - ./data/gitlab-runner:/etc/gitlab-runner
     - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-    - "constraint:node==node-2"
+    #environment:
+    #- "constraint:node==docker-node3"
