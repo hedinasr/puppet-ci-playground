@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # use same credentials for git as for gitlab user
 ip=$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
