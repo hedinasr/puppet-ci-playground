@@ -1,0 +1,6 @@
+FROM ruby:2.1
+MAINTAINER Hedi Nasr "h.nsr69@gmail.com"
+
+RUN gem install gitlab
+
+ENTRYPOINT []

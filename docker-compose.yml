@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  puppet:
+    build:
+      context: .
+      dockerfile: Dockerfile.puppet
+    restart: always
+    container_name: puppet
+    ports:
+      - 8140
+    volumes:
+    #  - ./code:/etc/puppetlabs/code/:ro
+      - ./puppet/ssl:/etc/puppetlabs/puppet/ssl/
+      - ./puppet/serverdata:/opt/puppetlabs/server/data/puppetserver/
+      - ./r10k:/etc/puppetlabs/r10k/
+#    deploy:
+#      placement:
+#        constraints: [node.role == manager]
+
+  redis:
+    restart: always
+    image: sameersbn/redis:latest
+    command:
+    - --loglevel warning
+    volumes:
+    - /srv/docker/gitlab/redis:/var/lib/redis:Z
+#    environment:
+#    - "constraint:node==docker-node2"
+
+  postgresql:
+    restart: always
+    image: sameersbn/postgresql:9.6-2
+    volumes:
+    - /srv/docker/gitlab/postgresql:/var/lib/postgresql:Z
+    environment:
+    - DB_USER=gitlab
+    - DB_PASS=password
+    - DB_NAME=gitlabhq_production
+    - DB_EXTENSION=pg_trgm
+#    - "constraint:node==docker-node2"
+
+  gitlab:
+    restart: always
+    image: sameersbn/gitlab:9.0.5
+    depends_on:
+    - redis
+    - postgresql
+    ports:
+    - "10080:80"
+    - "10022:22"
+    volumes:
+    - /srv/docker/gitlab/gitlab:/home/git/data:Z
+    #environment:
+    #- "constraint:node==docker-node2"
+    env_file:
+    - gitlab.env
+
+  runner:
+    restart: always
+    image: gitlab/gitlab-runner
+    depends_on:
+    - gitlab
+    volumes:
+    - ./data/gitlab-runner:/etc/gitlab-runner
+    - /var/run/docker.sock:/var/run/docker.sock
+    #environment:
+    #- "constraint:node==docker-node3"
