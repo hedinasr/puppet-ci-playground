@@ -5,5 +5,5 @@ mod 'puppetlabs/ntp', '4.1.0'
 mod 'puppetlabs/stdlib'
 
 mod 'monmodule',
-  :git => 'http://gitlab/root/monmodule',
-  :ref => 'master'
+  :git => 'http://root:12345678@gitlab/root/monmodule',
+  :ref => 'production'
