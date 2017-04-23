@@ -4,6 +4,6 @@ forge 'forge.puppetlabs.com'
 mod 'puppetlabs/ntp', '4.1.0'
 mod 'puppetlabs/stdlib'
 
-mod 'my_module',
-  :git => 'http://gitlab/root/my_module',
+mod 'monmodule',
+  :git => 'http://gitlab/root/monmodule',
   :ref => 'master'

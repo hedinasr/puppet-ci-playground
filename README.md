@@ -12,6 +12,7 @@ Go create `code` project in gitlab.
 Set `GITLAB_HOST` env var to host container IP address.
 
 1. `docker-compose up -d`
+2. `docker build -t test/gitlab-cli -f Dockerfile.gitlab-cli .`
 2. `./2createProjectsAndCommitToGitLab.sh`
 3. `docker exec -it puppet r10k deploy environment -p` #todo auto
 4. `docker exec -it puppet puppet agent --test`
