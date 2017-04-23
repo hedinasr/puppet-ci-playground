@@ -23,4 +23,3 @@ Set `GITLAB_HOST` env var to host container IP address.
 # Todo
 
 - Use Swarm
->>>>>>> dev
