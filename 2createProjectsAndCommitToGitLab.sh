@@ -49,5 +49,5 @@ createProjectAndCommitToGitLab(){
 createProject code
 createProjectAndCommitToGitLab code
 
-createProject my-module
-createProjectAndCommitToGitLab my-module
+createProject monmodule
+createProjectAndCommitToGitLab monmodule
