@@ -7,7 +7,7 @@ Puppet CI/CD with Gitlab and Gitlab CI all running with Docker (demo)
 - r10k
 
 # How to
-`git clone https://github.com/Ananasr/continuous-delivery-playground.git`
+`git clone https://github.com/Ananasr/puppet-ci-playground.git`
 
 Go create `code` project in gitlab.
 Set `GITLAB_HOST` env var to host container IP address.
