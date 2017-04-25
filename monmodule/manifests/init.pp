@@ -1,5 +1,5 @@
-class my_module {
-  package { 'cowsay':
-    ensure => latest,
+class monmodule {
+  if $osfamily == 'Debian' {
+    package { 'lsb-release': ensure => 'installed' }
   }
 }
