@@ -1,0 +1,36 @@
+FROM ubuntu:16.04
+MAINTAINER Hedi Nasr "h.nsr69@gmail.com"
+
+ENV UBUNTU_CODENAME="xenial" PUPPETSERVER_JAVA_ARGS="-Xms256m -Xmx256m"
+ENV PATH=/opt/puppetlabs/server/bin:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/bin:$PATH
+
+RUN apt-get update && \
+    apt-get install -y ca-certificates wget git && \
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
+    dpkg -i puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
+    echo "deb http://deb.theforeman.org/ xenial 1.14" > /etc/apt/sources.list.d/foreman.list && \
+    echo "deb http://deb.theforeman.org/ plugins 1.14" >> /etc/apt/sources.list.d/foreman.list && \
+    wget -q https://deb.theforeman.org/pubkey.gpg -O- | apt-key add - && \
+    apt-get update && apt-get install --no-install-recommends -y foreman-installer && \
+    rm puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    gem install --no-rdoc --no-ri r10k
+
+#COPY puppetserver /etc/default/puppetserver
+
+#RUN puppet config set autosign true --section master
+
+# VOLUME /etc/puppetlabs/code/ \
+#        /etc/puppetlabs/puppet/ssl/ \
+#        /opt/puppetlabs/server/data/puppetserver/ \
+#        /etc/puppetlabs/r10k/
+
+# COPY ./docker-entrypoint.sh /
+
+#EXPOSE 8140
+EXPOSE 443
+
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+#CMD ["foreground"]
+ENTRYPOINT []
