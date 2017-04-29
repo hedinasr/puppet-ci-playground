@@ -50,11 +50,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.gitlab-cli
+      args:
+        GITLAB: gitlab
     container_name: gitlab-cli
     depends_on:
     - gitlab
     environment:
-    - GITLAB=gitlab
+    - GITLAB_API_ENDPOINT=http://gitlab/api/v4 
+    - GITLAB_API_PRIVATE_TOKEN=$TOKEN
     command: create_project test
 
   runner:

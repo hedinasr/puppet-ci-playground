@@ -1,6 +1,14 @@
 FROM ruby:2.1
 MAINTAINER Hedi Nasr "h.nsr69@gmail.com"
 
+ARG GITLAB
+
 RUN gem install gitlab
 
-ENTRYPOINT []
+RUN TOKEN="curl -s http://$GITLAB/api/v3/session \
+                --data 'login=$GITLAB_USER&password=$GITLAB_PW' \
+                | jq '.private_token' | tr -d '\"'"
+
+RUN echo $TOKEN
+
+ENTRYPOINT ["gitlab"]
