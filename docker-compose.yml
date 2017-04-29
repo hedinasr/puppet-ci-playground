@@ -51,7 +51,8 @@ services:
       context: .
       dockerfile: Dockerfile.gitlab-cli
     container_name: gitlab-cli
-    depends_on: gitlab
+    depends_on:
+    - gitlab
     environment:
     - GITLAB=gitlab
     command: create_project test
