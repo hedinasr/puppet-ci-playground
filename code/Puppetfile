@@ -1,9 +1,0 @@
-forge 'forge.puppetlabs.com'
-
-# Forge Modules
-mod 'puppetlabs/ntp', '4.1.0'
-mod 'puppetlabs/stdlib'
-
-mod 'monmodule',
-  :git => 'http://root:12345678@gitlab/root/monmodule',
-  :ref => 'production'

@@ -1,6 +1,0 @@
----
-classes:
- - 'profile::base'
-
-ntp::servers:
-  - ntp.ens-lyon.fr

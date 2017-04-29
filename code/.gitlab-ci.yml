@@ -1,8 +1,0 @@
-image: ubuntu
-
-all_tests:
- script:
-  - apt-get update && apt-get -y install git
-  - echo 'yes'
- tags:
-  - puppet
