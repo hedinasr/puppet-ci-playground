@@ -1,0 +1,8 @@
+---
+ntp::servers:
+  - ntp.ens-lyon.fr
+
+user:
+  hnasr:
+    ensure: present
+    managehome: true
